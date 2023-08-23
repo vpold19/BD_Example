@@ -6,10 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Collection;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
-    Book findByName(String name);
+    Book findByNameIgnoreCase(String name);
 
-    Collection<Book> findBooksByAuthor(String author);
+    Collection<Book> findBooksByAuthorContainsIgnoreCase(String author);
 
-    Collection<Book> findAllByNameContains(String part);
+    Collection<Book> findAllByNameContainsIgnoreCase(String part);
 
+    //Collection<Book> findBooksByNameIgnoreCaseAndAuthorIgnoreCase(String name, String author);
+//Collection<Book> findBooksByNameOrAuthorAndGreaterThan(String name, String author, Long number);
 }
