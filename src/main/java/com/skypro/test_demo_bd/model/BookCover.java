@@ -1,6 +1,7 @@
 package com.skypro.test_demo_bd.model;
 
 import javax.persistence.*;
+import java.util.Arrays;
 
 @Entity
 public class BookCover {
@@ -10,6 +11,7 @@ public class BookCover {
 
     private String filePath;
     private Long fileSize;
+    private String mediaType;
 
     @Lob
     private byte[] preview;
@@ -19,6 +21,14 @@ public class BookCover {
 
     public Long getId() {
         return id;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
 
     public void setId(Long id) {
@@ -33,8 +43,8 @@ public class BookCover {
         this.filePath = filePath;
     }
 
-    public Long getFileSize() {
-        return fileSize;
+    public int getFileSize() {
+        return Math.toIntExact(fileSize);
     }
 
     public void setFileSize(Long fileSize) {
@@ -55,5 +65,16 @@ public class BookCover {
 
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    @Override
+    public String toString() {
+        return "BookCover{" +
+                "id=" + id +
+                ", filePath='" + filePath + '\'' +
+                ", fileSize=" + fileSize +
+                ", preview=" + Arrays.toString(preview) +
+                ", book=" + book +
+                '}';
     }
 }
